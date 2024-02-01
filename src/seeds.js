@@ -47,8 +47,15 @@ function createArtist() {
 }
 
 function getArtistImage(id) {
-  const width = 300;
-  const height = 300;
+  let width = 0;
+  let height = 0;
+  
+  for (index = 0; index <= 300; index++ )  {
+	width = index;
+	for (index2 = 0; index2 <= width; index2++ )  {
+	    height = index2;  
+	}
+  }
 
   return `https://picsum.photos/seed/${id}/${width}/${height}`;
 }
