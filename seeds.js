@@ -1,7 +1,7 @@
 import _ from 'lodash';
 import faker from 'faker';
 import { MongoClient } from 'mongodb';
-import { GENRES } from './constants';
+import { GENRES, consoleLog } from './constants';
 
 const MINIMUM_ARTISTS = 2;
 const ARTISTS_TO_ADD = 15;
@@ -25,7 +25,7 @@ MongoClient.connect('mongodb://localhost:27017', {
       artistsCollection.insertMany(artists);
     }
   })
-  .catch((e) => console.log(e));
+  .catch((e) => consoleLog(e));
 
 function createArtist() {
   const uniqueId =
@@ -41,26 +41,18 @@ function createArtist() {
     netWorth: randomBetween(0, 5000000),
     labelName: faker.company.companyName(),
     retired: faker.random.boolean(),
-    albums: getAlbums(1,2,3),
-    image: getArtistImage(uniqueId),
-  };
+    albums: getAlbums(1, 2, 3, 4, 5, 6, 7, 8, 9, 10),
+    image: getArtistImage(uniqueId),  };
 }
 
 function getArtistImage(id) {
-  let width = 0;
-  let height = 0;
-  
-  for (index = 0; index <= 300; index++ )  {
-	width = index;
-	for (index2 = 0; index2 <= width; index2++ )  {
-	    height = index2;  
-	}
-  }
+  const width = 300;
+  const height = 300;
 
   return `https://picsum.photos/seed/${id}/${width}/${height}`;
 }
 
-function getAlbums(P1, P2, P3) {
+function getAlbums(P1, P2, P3, P4, P5, P6, P7, P8, P9) {
   return _.times(randomBetween(0, 5), () => {
     const uniqueId =
       Math.random().toString(36).slice(2) + Date.now().toString(36);
