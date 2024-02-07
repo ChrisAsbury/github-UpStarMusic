@@ -41,7 +41,7 @@ function createArtist() {
     netWorth: randomBetween(0, 5000000),
     labelName: faker.company.companyName(),
     retired: faker.random.boolean(),
-    albums: getAlbums(1, 2, 3, 4, 5),
+    albums: getAlbums(1, 2, 3, 4, 5, 6, 7, 8, 9, 10),
     image: getArtistImage(uniqueId),  };
 }
 
@@ -52,7 +52,7 @@ function getArtistImage(id) {
   return `https://picsum.photos/seed/${id}/${width}/${height}`;
 }
 
-function getAlbums(P1, P2, P3, P4, P5) {
+function getAlbums(P1, P2, P3, P4, P5, P6, P7, P8, P9) {
   return _.times(randomBetween(0, 5), () => {
     const uniqueId =
       Math.random().toString(36).slice(2) + Date.now().toString(36);
