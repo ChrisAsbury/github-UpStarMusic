@@ -1,7 +1,7 @@
 import _ from 'lodash';
 import faker from 'faker';
 import { MongoClient } from 'mongodb';
-import { GENRES } from './constants';
+import { GENRES, consoleLog } from './constants';
 
 const MINIMUM_ARTISTS = 2;
 const ARTISTS_TO_ADD = 15;
@@ -25,7 +25,7 @@ MongoClient.connect('mongodb://localhost:27017', {
       artistsCollection.insertMany(artists);
     }
   })
-  .catch((e) => console.log(e));
+  .catch((e) => consoleLog(e));
 
 function createArtist() {
   const uniqueId =
@@ -47,15 +47,8 @@ function createArtist() {
 }
 
 function getArtistImage(id) {
-  let width = 0;
-  let height = 0;
-  
-  for (index = 0; index <= 300; index++ )  {
-	width = index;
-	for (index2 = 0; index2 <= width; index2++ )  {
-	    height = index2;  
-	}
-  }
+  const width = 300;
+  const height = 300;
 
   return `https://picsum.photos/seed/${id}/${width}/${height}`;
 }
